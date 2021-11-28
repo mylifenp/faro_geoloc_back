@@ -1,36 +1,10 @@
-import express from "express";
-import { locationStore } from "../../datastore";
+import { Router } from "express";
+import authRouters from "./routes/auth";
+import locationRouters from "./routes/location";
 
-const router = express.Router();
+const router = Router();
 
-router.get("/locations", async (req, res) => {
-  return res.send(await locationStore.find({}));
-});
-
-router.get("/location/:id", async (req, res) =>
-  res.send(await locationStore.findOne({ id: req.params.id }))
-);
-
-router.post("/location", async (req, res) => {
-  const id = uuidv4();
-  const { latitude, longitude, name, imageUrl } = req.body;
-  const location = await locationStore.insert({
-    id,
-    latitude,
-    longitude,
-    name,
-    imageUrl,
-  });
-  return res.send(location);
-});
-
-router.put("/location/:id", async (req, res) => {
-  const location = await locationStore.update(
-    { id: req.params.id },
-    { ...req.body },
-    { returnUpdatedDocs: true }
-  );
-  return res.send(location);
-});
+router.use("/auth", authRouters);
+router.use("/location", locationRouters);
 
 export default router;

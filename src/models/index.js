@@ -11,7 +11,7 @@ const config = {
   },
   test: {
     dialect: "sqlite",
-    storage: ":memory",
+    storage: ":memory:",
     logging: false,
   },
 };
