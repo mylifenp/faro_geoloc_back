@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon --exec babel-node src/server.js",
     "db:reset": "rm db.sqlite3 && touch db.sqlite3",
+    "e2emode": "cross-env NODE_ENV=test npm start",
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
     "test:watch": "npm run test -- --watchAll"
   },
