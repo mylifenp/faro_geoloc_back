@@ -15,6 +15,7 @@
 
 # changelog 28.11.2021
 * database changed to sqlite
+* models created for user, location
 * routes and controller cleaned
 * added jest as testing library
 * added test to test all authentication routes
