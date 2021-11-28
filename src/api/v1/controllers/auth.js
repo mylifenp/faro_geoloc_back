@@ -13,7 +13,7 @@ export const registerUser = async (req, res) => {
       where: { email: req.body.email },
     });
     if (email_exists)
-      return res.status(404).json({ error: "email_already_used" });
+      return res.status(404).json({ error: "email already used" });
 
     const saltRounds = 10;
     const hashedPassword = await new Promise((resolve, reject) => {
@@ -29,9 +29,9 @@ export const registerUser = async (req, res) => {
     };
     models.User.create(newUser)
       .then((user) =>
-        res.status(200).json({ status: "Success", new_user_id: user.id })
+        res.status(200).json({ status: "success", new_user_id: user.id })
       )
-      .catch((err) => res.status(500).send(err.message));
+      .catch((err) => res.status(500).json({ error: err.message }));
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
@@ -48,13 +48,14 @@ export const loginUser = async (req, res) => {
       where: { email: req.body.email },
     });
     if (!user) {
-      return res.status(404).send("Email is not correct");
+      return res.status(404).json({ error: "email is not correct" });
     }
     const validPassword = await bcrypt.compare(
       req.body.password,
       user.password
     );
-    if (!validPassword) return res.status(404).send("Invalid password");
+    if (!validPassword)
+      return res.status(404).json({ error: "invalid password" });
     const expires = Math.floor(Date.now() / 1000) + 60 * 1000;
     const token = jwt.sign(
       {
@@ -64,7 +65,7 @@ export const loginUser = async (req, res) => {
       SECRET
     );
 
-    return res.header("auth-token", token).send({ token, expires });
+    return res.header("token", token).send({ token, expires });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }

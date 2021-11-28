@@ -18,4 +18,5 @@ app.use("/static", serveStatic("static"));
 
 app.use("/api", api);
 
-app.listen({ port: PORT }, () => console.log(`backend ready on port: ${PORT}`));
+export { app };
+// app.listen(PORT, () => console.log(`backend ready on port: ${PORT}`));
