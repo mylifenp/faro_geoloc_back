@@ -7,7 +7,7 @@ describe("Tests the location routes", () => {
   const base_url = "/api/v1/";
   const register_url = `${base_url}auth/register/`;
   const login_url = `${base_url}auth/login/`;
-  const location_url = `${base_url}location/`;
+  const location_url = `${base_url}locations/`;
   const credentials = {
     email: "test1@test.de",
     password: "123456",

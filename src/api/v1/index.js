@@ -7,7 +7,7 @@ import authMiddleware from "./utilities/authMiddleware";
 const router = Router();
 
 router.use("/auth", authRouters);
-router.use("/location", locationRouters);
+router.use("/locations", locationRouters);
 router.use("/upload", uploadRouters);
 // this should give the list of all available routes
 router.get("/", authMiddleware, async (req, res) =>
