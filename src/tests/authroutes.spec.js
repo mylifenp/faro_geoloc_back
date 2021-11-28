@@ -4,17 +4,12 @@ import request from "supertest";
 import db, { sequelize } from "../models";
 
 describe("Will test the authentication router", () => {
-  let testdb = db;
   const base = "/api/v1/";
   const auth = `${base}auth/`;
   beforeAll(async () => {
     await sequelize.sync({ force: true });
   });
-  it("test v1 is reachable", async () => {
-    const res = await request(app).get(base);
-    expect(res.statusCode).toEqual(200);
-    expect(res.body).toHaveProperty("message");
-  });
+
   it("tries creating a user without email", async () => {
     const res = await request(app).post(`${auth}register/`).send({
       email: "test-test",
