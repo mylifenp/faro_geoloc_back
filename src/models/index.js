@@ -6,7 +6,8 @@ import { NODE_ENV } from "../config";
 const config = {
   development: {
     dialect: "sqlite",
-    storage: "./db.sqlite3",
+    // storage: "./db.sqlite3",
+    storage: "db.sqlite3",
     logging: false,
   },
   test: {

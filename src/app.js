@@ -5,7 +5,6 @@ import logger from "morgan";
 import serveStatic from "serve-static";
 import api from "./api";
 
-import { PORT } from "./config";
 
 const app = express();
 

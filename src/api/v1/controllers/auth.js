@@ -56,7 +56,7 @@ export const loginUser = async (req, res) => {
     );
     if (!validPassword)
       return res.status(404).json({ error: "invalid password" });
-    const expires = Math.floor(Date.now() / 1000) + 60 * 1;
+    const expires = Math.floor(Date.now() / 1000) + 60 * 100;
     const token = jwt.sign(
       {
         id: user.id,

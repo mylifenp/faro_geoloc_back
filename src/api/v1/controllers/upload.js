@@ -32,13 +32,15 @@ export const uploadController = (req, res) => {
   try {
     upload(req, res, (err) => {
       if (err instanceof multer.MulterError) {
-        res.send(err);
+        return res.json({ error: err.message });
       } else if (err) {
-        res.send(err);
+        return res.json({ error: err.message });
+      }
+      if (!res.req.file) {
+        return res.json({ error: "no file to upload" });
       }
       return res.send({
-        success: true,
-        imageUrl: `${req.protocol}://${req.get("host")}/${res.req.file.path}`,
+        imageurl: `${req.protocol}://${req.get("host")}/${res.req.file.path}`,
       });
     });
   } catch (err) {
