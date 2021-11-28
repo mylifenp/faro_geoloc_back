@@ -4,7 +4,7 @@ export const getLocations = async (req, res) => {
   try {
     const locations = await models.Location.findAll();
     if (!locations.length) {
-      return res.status(404).json({ error: "no resources found" });
+      return res.status(200).send([]);
     }
     return res.send(locations);
   } catch (err) {
