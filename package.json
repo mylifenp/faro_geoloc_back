@@ -1,5 +1,5 @@
 {
-  "name": "faro_geoloc_back",
+  "name": "geoloc_back",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
